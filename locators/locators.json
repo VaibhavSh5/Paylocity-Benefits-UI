@@ -1,0 +1,25 @@
+{
+   "loginPage": {
+      "usernameInput": "#Username",
+      "passwordInput": "#Password"
+   },
+
+   "homePage": {
+      "homepageName": ".navbar-brand",
+      "addEmployeeButton": ".pb-3 #add",
+      "addEmployeePopup": "#employeeModal .modal-dialog .modal-title",
+      "firstName": ".col-sm-10 #firstName",
+      "lastName": ".col-sm-10 #lastName",
+      "dependents": ".col-sm-2 #dependants",
+      "addButton": ".modal-footer #addEmployee",
+      "tableHeader": ".thead-dark > tr > th",
+      "tableRows": "#employeesTable > tbody > tr",
+      "editButton": "td > .fa-edit",
+      "updateButton": ".modal-footer #updateEmployee",
+      "deleteButton": "td > .fa-times",
+      "confirmDeletePopup": "#deleteModal h5",
+      "confirmDeleteMessage": ".col-sm-12",
+      "confirmDeleteButton": ".modal-footer #deleteEmployee",
+      "cancelDeleteButton": ".modal-footer #cancelDelete"
+   }
+}
