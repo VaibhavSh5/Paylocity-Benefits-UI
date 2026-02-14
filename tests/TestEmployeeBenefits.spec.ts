@@ -3,7 +3,7 @@ import config from '../config/env.json'
 import { EmployeeData } from '../test-data/employee-data'
 import { ApiFunctions } from '../api-functions';
 
-test.describe.serial('Employee creation with dependents', () => {
+test.describe.serial('Positive cases for employee CRUD operations', () => {
 
     let employeeIds: string[] = [];
     const employeeData = EmployeeData.employeeData();
@@ -45,7 +45,7 @@ test.describe.serial('Employee creation with dependents', () => {
 
     test('Verify update employee functionality with different dependents', async({pages}) => {
 
-        //Create a new employee to update
+        //*Create a new employee to update
         await pages.homePage.createEmployeeWithDependents('EmployeeUpdate', 'TestUpdate', 2);
         const userDetails = await pages.homePage.fetchUserDetails('EmployeeUpdate', 'TestUpdate', 2);
         let employeeId = '';
@@ -81,7 +81,7 @@ test.describe.serial('Employee creation with dependents', () => {
 
     test("Verify delete employee functionality", async({pages}) => {
 
-        //Create a new employee to delete
+        //*Create a new employee to delete
         await pages.homePage.createEmployeeWithDependents('EmployeeDelete', 'TestDelete', 10);
         const userDetails = await pages.homePage.fetchUserDetails('EmployeeDelete', 'TestDelete', 10);
         let employeeId = '';
@@ -101,7 +101,7 @@ test.describe.serial('Employee creation with dependents', () => {
 
         expect(employeeId, 'Employee ID should not be empty after creation').not.toBe('');
 
-        //Delete the employee and verify deletion
+        //*Delete the employee and verify deletion
         await pages.homePage.clickDeleteButton(employeeId);
         const message = await pages.homePage.getDeleteConfirmationMessage();
         expect(message, 'Delete confirmation message did not match expected value').toBe(`Delete employee record for ${FirstName} ${LastName}?`);
@@ -118,7 +118,7 @@ test.describe.serial('Employee creation with dependents', () => {
 
 
 
-    test.afterEach('Delete the created employee records', async({request}) => {
+    test.afterEach('Delete the created employee records', async() => {
 
         if (employeeIds.length === 0) {
             console.warn('No employee IDs to delete. Skipping cleanup.');
@@ -126,7 +126,7 @@ test.describe.serial('Employee creation with dependents', () => {
         }
         
         for (const employeeId of employeeIds) {
-            const response = await ApiFunctions.deleteEmployeeRecords(employeeId);
+            const response = await ApiFunctions.deleteEmployeeById(employeeId);
             expect(response.status(), `Failed to delete employee with ID ${employeeId}`).toBe(200);
             console.log(`Deleted employee ID: ${employeeId}, Status: ${response.status()}`);
         }

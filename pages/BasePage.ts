@@ -45,7 +45,11 @@ export class BasePage{
     }
 
     async toBeVisible(locator: string){
-        await expect(this.page.locator(locator)).toBeVisible();
+        try{
+            await expect(this.page.locator(locator)).toBeVisible();
+        }catch(e){
+            throw new Error(`Element with locator ${locator} was not visible within the expected time. Error: ${e}`);
+        }    
     }
 
     async title(){

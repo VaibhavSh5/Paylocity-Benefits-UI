@@ -19,11 +19,11 @@ export class HomePage extends BasePage {
         await this.toBeVisible(this.locators.addEmployeePopup);
     }
 
-    async fillEmployeeForm(firstName?: string, lastName?: string, dependents?: number) {
-        if (firstName) {
+    async fillEmployeeForm(firstName?: string, lastName?: string, dependents?: number | string) {
+        if (firstName!== undefined) {
             await this.fill(this.locators.firstName, firstName);
         }
-        if (lastName) {
+        if (lastName!== undefined) {
             await this.fill(this.locators.lastName, lastName);
         }
         if (dependents !== undefined) {
@@ -36,14 +36,14 @@ export class HomePage extends BasePage {
         await this.waitForState(this.locators.addButton, 'attached', 4000);
         await this.click(this.locators.addButton);
         await this.waitForTimeout(1000);
-        await this.waitForState(this.locators.addEmployeePopup, 'hidden', 4000);
-        await this.toBeVisible(this.locators.homepageName);
     }
 
-    async createEmployeeWithDependents(firstName?: string, lastName?: string, dependents?: number) {
+    async createEmployeeWithDependents(firstName?: string, lastName?: string, dependents?: number | string) {
         await this.clickAddEmployee();
         await this.fillEmployeeForm(firstName, lastName, dependents);
         await this.submitEmployeeForm();
+        await this.waitForState(this.locators.addEmployeePopup, 'hidden', 4000);
+        await this.toBeVisible(this.locators.homepageName);
     }
 
     async tableheaders(): Promise<string[]> {
@@ -114,8 +114,6 @@ export class HomePage extends BasePage {
         await this.waitForState(this.locators.updateButton, 'attached', 4000);
         await this.click(this.locators.updateButton);
         await this.waitForTimeout(1000);
-        await this.waitForState(this.locators.addEmployeePopup, 'hidden', 4000);
-        await this.toBeVisible(this.locators.homepageName);
     }
 
     async updateEmployeeWithDependents(employeeId: string, firstName?: string, lastName?: string, dependents?: number) {
@@ -123,6 +121,8 @@ export class HomePage extends BasePage {
         await this.clickEmployeeId(employeeId);
         await this.fillEmployeeForm(firstName, lastName, dependents);
         await this.updateEmployee();
+        await this.waitForState(this.locators.addEmployeePopup, 'hidden', 4000);
+        await this.toBeVisible(this.locators.homepageName);
     }
 
     async clickDeleteButton(employeeId: string) {
@@ -159,6 +159,11 @@ export class HomePage extends BasePage {
         await this.cancelDelete();
         await this.clickDeleteButton(employeeId);
         await this.confirmDelete();
+    }
+
+    async getErrorMessageAddPopup(): Promise<string> {
+        await this.toBeVisible(this.locators.addEmployeeFormErrorMessage);
+        return this.getText(this.locators.addEmployeeFormErrorMessage);
     }
 }
 

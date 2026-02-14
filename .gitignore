@@ -11,6 +11,7 @@ node_modules/
 /traces/
 /allure-results/
 auth.json
+.vscode/
 
 
 

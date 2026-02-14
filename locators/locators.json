@@ -1,7 +1,10 @@
 {
    "loginPage": {
       "usernameInput": "#Username",
-      "passwordInput": "#Password"
+      "passwordInput": "#Password",
+      "errorMessage": ".text-danger ul li",
+      "errorMessageUsername": ".text-danger ul li:nth-child(1)",
+      "errorMessagePassword": ".text-danger ul li:nth-child(2)"
    },
 
    "homePage": {
@@ -20,6 +23,7 @@
       "confirmDeletePopup": "#deleteModal h5",
       "confirmDeleteMessage": ".col-sm-12",
       "confirmDeleteButton": ".modal-footer #deleteEmployee",
-      "cancelDeleteButton": ".modal-footer #cancelDelete"
+      "cancelDeleteButton": ".modal-footer #cancelDelete",
+      "addEmployeeFormErrorMessage": ".text-danger"
    }
 }
