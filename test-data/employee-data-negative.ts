@@ -29,14 +29,14 @@ export class EmployeeDataNegative{
         {
             caseName: '50 chars in FirstName',
             firstName: 'TestUser00TestUser00TestUser00TestUser00TestUser001',
-            lastName: 'User@@',
+            lastName: 'User@@50Char',
             dependents: 0,
             errorMessage: 'First Name cannot exceed 50 characters.'
         },
 
         {
             caseName: '50 chars in LastName',
-            firstName: 'TestUser',
+            firstName: 'TestUser50Char',
             lastName: 'TestUser00TestUser00TestUser00TestUser00TestUser001',
             dependents: 0,
             errorMessage: 'Last Name cannot exceed 50 characters.'
