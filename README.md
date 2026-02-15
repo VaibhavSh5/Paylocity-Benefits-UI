@@ -82,3 +82,9 @@ npx playwright show-report
 ```
 
 This launches an interactive HTML report from the `playwright-report/` folder.
+
+
+## BUG REPORTS:
+
+The bug reports for the Paylocity Benefits UI test suite can be found in the bug-reports directory of this repository. 
+Each bug report includes a detailed description of the issue, steps to reproduce, expected vs actual results, and any relevant screenshots or logs.
